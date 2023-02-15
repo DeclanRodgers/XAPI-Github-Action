@@ -24,12 +24,12 @@ function CallEndpoint(){
             //console.log(response.data);
         }).catch(function(error){
             if(error.response){
-                fs.writeFileSync("logs/axios-error.txt", error.message.toString());
+                fs.writeFileSync("logs/axios-error.txt", error.stack);
                 console.log("Axios error data written.");
             }
         });
     } catch (error) {
-        fs.writeFileSync("logs/error.txt", error);
+        fs.writeFileSync("logs/error.txt", error.stack);
         console.log("Error data written.");
     }
 }
@@ -51,6 +51,6 @@ function CallEndpointWithFilter(destinationFilter){
             console.log(response.data);
         })
     } catch (error) {
-        console.log(error);
+        console.log(error.stack);
     }
 }
