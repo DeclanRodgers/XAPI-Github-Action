@@ -3,22 +3,33 @@ const github = require('@actions/github')
 const axios = require('axios');
 var fs = require('file-system');
 
-let apiEndpoint = fs.readFileSync("destination.txt").toString();
-let xCommand = fs.readFileSync("command.txt").toString();
+let apiEndpoint = fs.readFileSync("textfiles/destination.txt").toString();
+let xCommand = fs.readFileSync("textfiles/command.txt").toString();
+let tokenData = fs.readFileSync("textfiles/secret.txt").toString();
+//const destinationFilter = core.getInput('destination-filter');
+let deviceEndpoint = fs.readFileSync("textfiles/device-endpoint.txt").toString();
+const destinationFilter = 'CC5A535FEA2F?useDemo=true';
 
 console.log(`Endpoint: ${apiEndpoint} \nCommand: ${xCommand}`);
 
-const destinationFilter = core.getInput('destination-filter');
 // if (!destinationFilter){
 //     CallEndpoint();
 // } else {
 //     CallEndpointWithFilter(destinationFilter);
 // }
+
 CallEndpoint();
 
 function CallEndpoint(){
+    let headerConfig = {
+        headers: {
+            accept: 'application/json',
+            Authorization: 'Bearer '+tokenData
+        }
+    };
+    
     try{
-        axios.get(apiEndpoint).then(response =>{
+        axios.get(apiEndpoint, headerConfig).then(response =>{
             fs.writeFileSync("logs/output.txt", response.data);
             console.log("Response written.");
             //console.log(response.data);
@@ -35,19 +46,15 @@ function CallEndpoint(){
 }
 
 function CallEndpointWithFilter(destinationFilter){
-    let tokenData = '';
     let headerConfig = {
         headers: {
-          Authorization: 'Bearer '+tokenData,
+            accept: 'application/json',
+            Authorization: 'Bearer '+tokenData
         }
-    };
-      
-    let data = {
-        'HTTP_CONTENT_LANGUAGE': self.language
     };
     
     try{
-        axios.post(apiEndpoint, data, headerConfig).then(response =>{
+        axios.post(apiEndpoint, headerConfig).then(response =>{
             console.log(response.data);
         })
     } catch (error) {
