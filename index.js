@@ -1,16 +1,17 @@
+const urlConcat = require('./lib/endpointConcat');
 const core = require('@actions/core');
 const github = require('@actions/github')
 const axios = require('axios');
 var fs = require('file-system');
 
+//const destinationFilter = core.getInput('destination-filter');
 let apiEndpoint = fs.readFileSync("textfiles/destination.txt").toString();
 let xCommand = fs.readFileSync("textfiles/command.txt").toString();
 let tokenData = fs.readFileSync("textfiles/secret.txt").toString();
-//const destinationFilter = core.getInput('destination-filter');
-let deviceEndpoint = fs.readFileSync("textfiles/device-endpoint.txt").toString();
-const destinationFilter = 'CC5A535FEA2F?useDemo=true';
+let destinationFilter =  fs.readFileSync("textfiles/destinationFilter.txt").toString();
+let deviceEndpoint = urlConcat.urlConcat(apiEndpoint, destinationFilter);
 
-console.log(`Endpoint: ${apiEndpoint} \nCommand: ${xCommand}`);
+console.log(`Endpoint: ${deviceEndpoint} \nCommand: ${xCommand}`);
 
 // if (!destinationFilter){
 //     CallEndpoint();
@@ -18,7 +19,7 @@ console.log(`Endpoint: ${apiEndpoint} \nCommand: ${xCommand}`);
 //     CallEndpointWithFilter(destinationFilter);
 // }
 
-CallEndpoint();
+//CallEndpoint();
 
 function CallEndpoint(){
     let headerConfig = {
@@ -31,11 +32,11 @@ function CallEndpoint(){
     try{
         axios.get(apiEndpoint, headerConfig).then(response =>{
             fs.writeFileSync("logs/output.txt", response.data);
-            console.log("Response written.");
+            console.log(`Token recieved:\n`,response.data);
             //console.log(response.data);
         }).catch(function(error){
             if(error.response){
-                fs.writeFileSync("logs/axios-error.txt", error.stack);
+                fs.writeFileSync("logs/axios-error.txt", error.message);
                 console.log("Axios error data written.");
             }
         });

@@ -1,1 +1,1 @@
-xCommand:Cmd:AllInfo
+xStatus

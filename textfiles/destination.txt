@@ -1,1 +1,1 @@
-https://identity.unifiedfx.com/identity/account/token/Webex?forceRenewal=true
+https://mpp.unifiedfx.com/api/devices/{id}/command
