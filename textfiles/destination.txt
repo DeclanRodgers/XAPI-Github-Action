@@ -1,1 +1,1 @@
-https://mpp.unifiedfx.com/api/devices/{id}/command
+https://mpp.unifiedfx.com/api/devices/{id}/command?useDemo=true

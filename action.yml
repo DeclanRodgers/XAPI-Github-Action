@@ -1,13 +1,19 @@
 name: 'XAPI Github Actions'
 description: 'Calls a Cisco XAPI endpoint and displays xStatus data'
 inputs:
-  api-endpoint-url:   #ID of input
-    description: 'The endpoint to call'
-    required: true
-    #default: ''
+  # api-endpoint:   #ID of input
+  #   description: 'The endpoint to call'
+  #   required: true
+  #   #default: ''
   destination-filter:
-    description: 'Filter applied to endpoint action'
-    required: false    
+    description: 'Filter applied to endpoint action (MAC address of Device)'
+    required: true
+  token-data:
+    description: 'JWT Token data to authenticate to the MPP service'
+    required: true
+  device-command:
+    description: 'Command to send to endpoint device'
+    required: false
 runs:
   using: 'node16'
   main: 'index.js'
