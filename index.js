@@ -9,11 +9,13 @@ const fs = require('file-system');
 
 //let apiEndpoint = core.getInput('api-endpoint');
 let destinationFilter = core.getInput('destination-filter');
-let tokenData = core.getInput('token-data');
 let xCommand = core.getInput('device-command');
+let tokenData = core.getInput('token-data');
 
 if (typeof xCommand !== 'undefined'){
+    console.log(`Device:${destinationFilter}\nCommand:${xCommand}\n`)
     endpointActions.SendPostCommand(destinationFilter, tokenData, xCommand);    
 } else{
+    console.log(`Device:${destinationFilter}\n`)
     endpointActions.SendGetCommand(destinationFilter, tokenData);
 }
