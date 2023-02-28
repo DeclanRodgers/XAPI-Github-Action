@@ -1,4 +1,4 @@
 node_modules/
 logs/
 package-lock.json
-textfiles/secret.txt
+textfiles/
