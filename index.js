@@ -1,9 +1,9 @@
 const endpointActions = require('./endpointactions');
 const core = require('@actions/core');
 const github = require('@actions/github')
-var fs = require('file-system');
+const fs = require('file-system');
 
-//let xCommand //= fs.readFileSync("textfiles/command.txt").toString();
+// let xCommand //= fs.readFileSync("textfiles/command.txt").toString();
 // let tokenData = fs.readFileSync("textfiles/secret.txt").toString();
 // let destinationFilter =  fs.readFileSync("textfiles/destinationFilter.txt").toString();
 

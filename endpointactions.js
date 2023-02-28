@@ -27,12 +27,9 @@ function SendGetCommand(deviceid, jwtToken){
 
   try{
     axios.get(deviceEndpoint, headerConfig).then(response =>{
-        //fs.writeFileSync("logs/output.txt", response.data);
         console.log(`\nGET Data recieved:\n${JSON.stringify(response.data, null, "\t")}`);
-        //console.log(response.data);
     }).catch(function(error){
         if(error.response){
-            //fs.writeFileSync("logs/axios-error.txt", error.message);
             console.log(`Axios error:\n${error.stack}`);
         }
     });
@@ -63,10 +60,8 @@ function SendPostCommand(deviceid, jwtToken, xCommand){
   try{
     axios.post(deviceEndpoint, bodyData, headerConfig).then(response =>{
       console.log(`\nPOST Data recieved:\n${JSON.stringify(response.data, null, "\t")}`);
-      //fs.writeFileSync("logs/output.json", JSON.stringify(response.data,null,"\t"));
     }).catch(function(error){
       if(error.response){
-        //fs.writeFileSync("logs/axios-error.txt", error.stack);
         console.log(`Axios error:\n${error.stack}`);
       }
   });
