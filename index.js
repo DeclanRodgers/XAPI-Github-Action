@@ -13,9 +13,9 @@ let xCommand = core.getInput('device-command');
 let tokenData = core.getInput('token-data');
 
 if (typeof xCommand !== 'undefined'){
-    console.log(`Device:${destinationFilter}\nCommand:${xCommand}\n`)
+    console.log(`Device:${destinationFilter}\nCommand:${xCommand}\n`);
     endpointActions.SendPostCommand(destinationFilter, tokenData, xCommand);    
 } else{
-    console.log(`Device:${destinationFilter}\n`)
+    console.log(`Device:${destinationFilter}\n`);
     endpointActions.SendGetCommand(destinationFilter, tokenData);
 }
