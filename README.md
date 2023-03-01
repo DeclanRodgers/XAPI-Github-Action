@@ -9,21 +9,26 @@ The results are (for now) printed to the console when run as a Github Action.
 
 ---
 
-### `destination-filter`
+#### `destination-filter`
 
-**Required:** The MAC address of the endpoint
+**Required**  
+The MAC address of the endpoint
 
-### `token-data:`
+#### `token-data:`
 
-**Required:** The token for authentication to access the service. Stored as a Repository Secret (E.G JWT_TOKEN).
+**Required**  
+The token for authentication to access the service. Stored as a Repository Secret (E.G JWT_TOKEN).
 
-### `device-command`
+#### `device-command`
 
-*Optional:* The xCommand to be sent to the device
+*Optional*  
+ The xCommand to be sent to the device
 
 ## Example usage
 
 ---
+
+Use the ```'actions/checkout@v3'``` Github Action in your workflow to pull the latest tag and ```actions/setup-node@v3``` to setup node.
 
 ```yaml
 uses: 'DeclanRodgers/XAPI-Github-Action@0.9'
