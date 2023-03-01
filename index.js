@@ -7,6 +7,8 @@ let destinationFilter = core.getInput('destination-filter');
 let xCommand = core.getInput('device-command');
 let tokenData = core.getInput('token-data');
 
+//logic to check destination filter is single or array of devices
+
 if (xCommand){
     console.log(`Device:${destinationFilter}\nCommand:${xCommand}\n`);
     endpointActions.SendPostCommand(destinationFilter, tokenData, xCommand);    
